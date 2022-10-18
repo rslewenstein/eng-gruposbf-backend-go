@@ -20,8 +20,7 @@ var productRouters = []Router{
 	// {
 	// 	URI: "api/product/currency",
 	// 	Method: http.MethodPost,
-	// 	Function: func(w http.ResponseWriter, r *http.Request){
-	// 	},
+	// 	Function: controllers.CreateCurrency;
 	// },
 
 }
