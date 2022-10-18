@@ -18,7 +18,7 @@ var productRouters = []Router{
 	// 	Function: controllers.GetConverterCurrency,
 	// },
 	// {
-	// 	URI: "api/product/",
+	// 	URI: "api/product/currency",
 	// 	Method: http.MethodPost,
 	// 	Function: func(w http.ResponseWriter, r *http.Request){
 	// 	},

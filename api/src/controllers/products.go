@@ -11,3 +11,8 @@ func GetConverterAllCurrency(w http.ResponseWriter, r *http.Request) {
 // func GetConverterCurrency(w http.ResponseWriter, r *http.Request) {
 // 	w.Write([]byte("Converting..."))
 // }
+
+// Cadastra uma moeda específica
+// func CreateCurrency(w http.ResponseWriter, r *http.Request) {
+// 	w.Write([]byte("Creating..."))
+// }
