@@ -10,6 +10,7 @@ import (
 
 var (
 	Port = 0
+	Api_key = ""
 )
 
 func LoadEnv() {
@@ -23,4 +24,6 @@ func LoadEnv() {
 	if err != nil {
 		Port = 9000
 	}
+
+	Api_key = os.Getenv("API_KEY")
 }

@@ -1,9 +1,14 @@
 package controllers
 
-import "net/http"
+import (
+	"net/http"
+
+	"go.mod/src/services"
+)
 
 // Faz a conversão de todas as moedas cadastradas
 func GetConverterAllCurrency(w http.ResponseWriter, r *http.Request) {
+	services.GetConverterCurrency()
 	w.Write([]byte("Converting..."))
 }
 

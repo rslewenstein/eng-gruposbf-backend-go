@@ -11,11 +11,8 @@ import (
 
 func main() {
 	config.LoadEnv()
-
+	
 	r := router.GenerateRouters()
 	fmt.Printf("Listening on port %d", config.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Port), r))
-
-	// myRoute := mux.NewRouter().StrictSlash(true)
-	// myRoute.HandleFunc("/listar", controllers.ListUsers()).Methods("GET")
 }
