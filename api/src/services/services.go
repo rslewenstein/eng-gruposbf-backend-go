@@ -7,12 +7,13 @@ import (
 	"net/http"
 
 	"go.mod/src/config"
+	"go.mod/src/models"
 )
 
-func GetConverterCurrency() {
-	var currencyFrom string = "BRL"
-	var currencyTo string = "USD"
-	var amount string = "529.00"
+func GetConverterCurrency(c models.Converter) ([]models.Converted, error) {
+	var currencyFrom string = c.CurrencyFrom //"BRL"
+	var currencyTo string = c.CurrencyTo     //"USD"
+	var amount string = c.Amount             //"529.00"
 	url := "https://api.apilayer.com/exchangerates_data/convert?to=" + currencyTo + "&from=" + currencyFrom + "&amount=" + amount + ""
 
 	client := &http.Client{}
@@ -37,5 +38,7 @@ func GetConverterCurrency() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(string(body)) //tem que retornar JSON
+	fmt.Println(string(body))
+
+	return nil, nil
 }

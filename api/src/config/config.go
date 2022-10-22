@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -9,6 +10,7 @@ import (
 )
 
 var (
+	StringConnection = ""
 	Port    = 0
 	Api_key = ""
 )
@@ -24,6 +26,12 @@ func LoadEnv() {
 	if err != nil {
 		Port = 9000
 	}
+
+	StringConnection = fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"),
+	)
 
 	Api_key = os.Getenv("API_KEY")
 }

@@ -1,13 +1,5 @@
-CREATE DATABASE IF NOT EXISTS guposbf;
-USE guposbf;
-
-DROP TABLE IF EXISTS products;
-
-CREATE TABLE products(
-    id int auto_increment primary key,
-    product_name varchar(100) not null,
-    product_price decimal(10,2)
-)ENGINE=INNODB;
+CREATE DATABASE IF NOT EXISTS gruposbf;
+USE gruposbf;
 
 DROP TABLE IF EXISTS currencies;
 
