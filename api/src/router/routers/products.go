@@ -8,19 +8,13 @@ import (
 
 var productRouters = []Router{
 	{
-		URI:      "/api/product/convert-all-currency",
+		URI:      "/api/convert/{productId}&{symbol}&{amount}",
 		Method:   http.MethodGet,
-		Function: controllers.GetConverterAllCurrency,
+		Function: controllers.GetConvertedCurrency,
 	},
-	// {
-	// 	URI:      "/api/product/convert/{productId}/{currency}",
-	// 	Method:   http.MethodGet,
-	// 	Function: controllers.GetConverterCurrency,
-	// },
 	// {
 	// 	URI: "api/product/currency",
 	// 	Method: http.MethodPost,
 	// 	Function: controllers.CreateCurrency;
 	// },
-
 }

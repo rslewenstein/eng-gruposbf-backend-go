@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	Port = 0
+	Port    = 0
 	Api_key = ""
 )
 
