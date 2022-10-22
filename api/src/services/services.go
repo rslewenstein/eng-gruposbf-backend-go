@@ -10,7 +10,7 @@ import (
 )
 
 func GetConverterCurrency() {
-	var currencyFrom string = config.Symbol_country_default
+	var currencyFrom string = "BRL"
 	var currencyTo string = "USD"
 	var amount string = "529.00"
 	url := "https://api.apilayer.com/exchangerates_data/convert?to=" + currencyTo + "&from=" + currencyFrom + "&amount=" + amount + ""
@@ -37,5 +37,5 @@ func GetConverterCurrency() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(string(body))
+	fmt.Println(string(body)) //tem que retornar JSON
 }

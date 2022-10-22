@@ -9,9 +9,8 @@ import (
 )
 
 var (
-	Port                   = 0
-	Api_key                = ""
-	Symbol_country_default = ""
+	Port    = 0
+	Api_key = ""
 )
 
 func LoadEnv() {
@@ -27,6 +26,4 @@ func LoadEnv() {
 	}
 
 	Api_key = os.Getenv("API_KEY")
-
-	Symbol_country_default = os.Getenv("SYMBOL_COUNTRY_DEFAULT")
 }
