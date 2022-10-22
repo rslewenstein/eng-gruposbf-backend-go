@@ -2,7 +2,7 @@ package services
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 
@@ -10,7 +10,7 @@ import (
 )
 
 func GetConverterCurrency() {
-	const currencyFrom string = "BRL"
+	var currencyFrom string = config.Symbol_country_default
 	var currencyTo string = "USD"
 	var amount string = "529.00"
 	url := "https://api.apilayer.com/exchangerates_data/convert?to=" + currencyTo + "&from=" + currencyFrom + "&amount=" + amount + ""
@@ -32,7 +32,7 @@ func GetConverterCurrency() {
 		log.Fatal(err)
 	}
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		log.Fatal(err)
 	}

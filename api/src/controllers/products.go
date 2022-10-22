@@ -13,7 +13,7 @@ func GetConverterAllCurrency(w http.ResponseWriter, r *http.Request) {
 }
 
 // Faz a conversão de uma moeda específica
-// func GetConverterCurrency(w http.ResponseWriter, r *http.Request) {
+// func GetConvertedCurrency(w http.ResponseWriter, r *http.Request) {
 // 	w.Write([]byte("Converting..."))
 // }
 
