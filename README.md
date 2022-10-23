@@ -4,6 +4,8 @@ Teste para Engenheiro de Software do Grupo SBF.
 - Executar o comando: 
 ```go mod tidy```
 
+- versão do Go: 1.19
+
 #### 2 - criar o arquivo .env, dentro da diretório api. (Já existe um arquivo de EXEMPLO_ENV, basta renomea-lo para .env e preencher os dados):
 - DB_USER= (usuario do BD).
 - DB_PASSWORD= (senha do BD).
