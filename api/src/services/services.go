@@ -31,6 +31,7 @@ func GetConverterCurrency(c models.Converter) (models.Converted, error) {
 	req.Header.Set("apikey", config.Api_key)
 
 	if err != nil {
+		LoggerSystem("erro", "GetConverterCurrency, http.NewRequest(GET, url, nil)", string(err.Error()))
 		fmt.Println(err)
 	}
 
@@ -45,6 +46,7 @@ func GetConverterCurrency(c models.Converter) (models.Converted, error) {
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
+		LoggerSystem("erro", "GetConverterCurrency, io.ReadAll(res.Body)", string(err.Error()))
 		log.Fatal(err)
 	}
 
@@ -55,5 +57,6 @@ func GetConverterCurrency(c models.Converter) (models.Converted, error) {
 	converted.Symbol = responseObject.QueryRes.SymbolRes
 	converted.Price = string(fmt.Sprintf("%.2f", responseObject.ResultRes))
 
+	LoggerSystem("sucesso", "GetConverterCurrency", "conversão realizada")
 	return converted, nil
 }
