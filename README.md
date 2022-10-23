@@ -18,3 +18,8 @@ Teste para Engenheiro de Software do Grupo SBF.
 - https://exchangeratesapi.io/documentation/ (expirou)
 
 - https://openexchangerates.org/ (https://docs.openexchangerates.org/reference/api-introduction)
+
+
+- http://localhost:5000/swagger/index.html
+- https://github.com/swaggo/swag
+- https://github.com/swaggo/http-swagger/tree/master/example/gorilla
