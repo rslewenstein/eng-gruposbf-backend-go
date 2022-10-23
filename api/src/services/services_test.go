@@ -16,12 +16,9 @@ func TestGetConverterCurrency(t *testing.T) {
 	resp, err := services.GetConverterCurrency(converter)
 
 	if err != nil {
-		println("Fail")
-	}
-	if resp.Price != "0.00" {
-		println("Success")
+		t.Errorf("Fail")
 	}
 	if resp.Price == "0.00" {
-		println("Fail")
+		t.Errorf("Fail")
 	}
 }
