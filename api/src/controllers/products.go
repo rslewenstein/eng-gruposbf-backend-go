@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -23,8 +22,6 @@ func GetConvertedCurrency(w http.ResponseWriter, r *http.Request) {
 	c.CurrencyFrom = strings.ToUpper(params["symbol"])
 	c.Amount = params["amount"]
 
-	fmt.Println(c.CurrencyFrom, c.Amount)
-
 	// buscar no banco as siglas
 	// c.CurrencyTo, a cada sigla, pesquisar o preço e converter
 	db, err := connection.Connect()
@@ -40,7 +37,7 @@ func GetConvertedCurrency(w http.ResponseWriter, r *http.Request) {
 		responses.Error(w, http.StatusInternalServerError, err)
 		return
 	}
-	
+
 	for _, item := range symbols {
 		c.CurrencyTo = item.Symbol
 		converted, err := services.GetConverterCurrency(c)
@@ -50,8 +47,6 @@ func GetConvertedCurrency(w http.ResponseWriter, r *http.Request) {
 
 		responses.JSON(w, http.StatusOK, converted)
 	}
-			
-	//responses.JSON(w, http.StatusOK, symbols)
 }
 
 // Cadastra uma moeda específica (sigla e país)

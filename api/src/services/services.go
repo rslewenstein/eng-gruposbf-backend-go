@@ -20,10 +20,10 @@ type QueryRes struct {
 	SymbolRes string `json:"to"`
 }
 
-func GetConverterCurrency(c models.Converter) ([]models.Converted, error) {
-	var currencyFrom string = c.CurrencyFrom //"BRL"
-	var currencyTo string = c.CurrencyTo     //"USD"
-	var amount string = c.Amount             //"529.00"
+func GetConverterCurrency(c models.Converter) (models.Converted, error) {
+	var currencyFrom string = c.CurrencyFrom
+	var currencyTo string = c.CurrencyTo
+	var amount string = c.Amount
 	url := "https://api.apilayer.com/exchangerates_data/convert?to=" + currencyTo + "&from=" + currencyFrom + "&amount=" + amount + ""
 
 	client := &http.Client{}
@@ -50,14 +50,10 @@ func GetConverterCurrency(c models.Converter) ([]models.Converted, error) {
 
 	var responseObject Response
 	json.Unmarshal(body, &responseObject)
-	fmt.Println(responseObject.QueryRes.SymbolRes)
-	fmt.Println(responseObject.ResultRes)
 
-	//Convert the body to type string
-	// sb := string(body)
-	// fmt.Println(sb)
+	var converted models.Converted
+	converted.Symbol = responseObject.QueryRes.SymbolRes
+	converted.Price = string(fmt.Sprintf("%v", responseObject.ResultRes))
 
-	//fmt.Println(string(body))
-
-	return nil, nil
+	return converted, nil
 }
