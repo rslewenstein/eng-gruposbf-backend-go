@@ -68,3 +68,32 @@ func (repository Connection) GetCurrencies() ([]models.Symbol, error) {
 
 	return symbols, nil
 }
+
+func (repository Connection) CreateLog(typelog, method, logdescription string) error {
+	statement, err := repository.db.Prepare(
+		"INSERT INTO currencylogs (typelog, method, logdescription) VALUES (?, ?, ?)",
+	)
+	if err != nil {
+		return err
+	}
+	defer statement.Close()
+	TypeLog := typelog
+	Method := method
+	LogDescription := logdescription
+
+	result, err := statement.Exec(TypeLog, Method, LogDescription)
+	if err != nil {
+		return err
+	}
+
+	lastIDinserted, err := result.LastInsertId()
+	if err != nil {
+		return err
+	}
+
+	if lastIDinserted > 0 {
+		return nil
+	}
+
+	return err
+}
