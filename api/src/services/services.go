@@ -1,6 +1,7 @@
 package services
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -10,10 +11,19 @@ import (
 	"go.mod/src/models"
 )
 
-func GetConverterCurrency(c models.Converter) ([]models.Converted, error) {
-	var currencyFrom string = c.CurrencyFrom //"BRL"
-	var currencyTo string = c.CurrencyTo     //"USD"
-	var amount string = c.Amount             //"529.00"
+type Response struct {
+	ResultRes float32  `json:"result"`
+	QueryRes  QueryRes `json:"query"`
+}
+
+type QueryRes struct {
+	SymbolRes string `json:"to"`
+}
+
+func GetConverterCurrency(c models.Converter) (models.Converted, error) {
+	var currencyFrom string = c.CurrencyFrom
+	var currencyTo string = c.CurrencyTo
+	var amount string = c.Amount
 	url := "https://api.apilayer.com/exchangerates_data/convert?to=" + currencyTo + "&from=" + currencyFrom + "&amount=" + amount + ""
 
 	client := &http.Client{}
@@ -38,7 +48,12 @@ func GetConverterCurrency(c models.Converter) ([]models.Converted, error) {
 		log.Fatal(err)
 	}
 
-	fmt.Println(string(body))
+	var responseObject Response
+	json.Unmarshal(body, &responseObject)
 
-	return nil, nil
+	var converted models.Converted
+	converted.Symbol = responseObject.QueryRes.SymbolRes
+	converted.Price = string(fmt.Sprintf("%v", responseObject.ResultRes))
+
+	return converted, nil
 }
