@@ -53,7 +53,7 @@ func GetConverterCurrency(c models.Converter) (models.Converted, error) {
 
 	var converted models.Converted
 	converted.Symbol = responseObject.QueryRes.SymbolRes
-	converted.Price = string(fmt.Sprintf("%v", responseObject.ResultRes))
+	converted.Price = string(fmt.Sprintf("%.2f", responseObject.ResultRes))
 
 	return converted, nil
 }

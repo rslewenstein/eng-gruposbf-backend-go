@@ -8,4 +8,6 @@ Teste para Engenheiro de Software do Grupo SBF.
 - API_PORT= (Localmente eu coloco API_PORT=5000, mas se nenhuma porta for setada, automaticamente será atribuída a porta 9000).
 - API_KEY= (Chave da API de conversão de moedas).
 
-- https://exchangeratesapi.io/documentation/
+- https://exchangeratesapi.io/documentation/ (expirou)
+
+- https://openexchangerates.org/ (https://docs.openexchangerates.org/reference/api-introduction)

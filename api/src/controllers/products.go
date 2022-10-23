@@ -22,8 +22,6 @@ func GetConvertedCurrency(w http.ResponseWriter, r *http.Request) {
 	c.CurrencyFrom = strings.ToUpper(params["symbol"])
 	c.Amount = params["amount"]
 
-	// buscar no banco as siglas
-	// c.CurrencyTo, a cada sigla, pesquisar o preço e converter
 	db, err := connection.Connect()
 	if err != nil {
 		responses.Error(w, http.StatusInternalServerError, err)
