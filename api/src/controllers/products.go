@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"strings"
 
@@ -12,6 +13,7 @@ import (
 	"go.mod/src/models"
 	"go.mod/src/repository"
 	"go.mod/src/responses"
+	"go.mod/src/services"
 )
 
 // Faz a conversão de uma moeda passada como parâmetro
@@ -25,13 +27,31 @@ func GetConvertedCurrency(w http.ResponseWriter, r *http.Request) {
 
 	// buscar no banco as siglas
 	// c.CurrencyTo, a cada sigla, pesquisar o preço e converter
+	db, err := connection.Connect()
+	if err != nil {
+		responses.Error(w, http.StatusInternalServerError, err)
+		return
+	}
+	defer db.Close()
 
-	// teste, err := services.GetConverterCurrency(c)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	repository := repository.NewRepository(db)
+	symbols, err := repository.GetCurrencies()
+	if err != nil {
+		responses.Error(w, http.StatusInternalServerError, err)
+		return
+	}
+	
+	for _, item := range symbols {
+		c.CurrencyTo = item.Symbol
+		converted, err := services.GetConverterCurrency(c)
+		if err != nil {
+			log.Fatal(err)
+		}
 
-	//responses.JSON(w, http.StatusOK, teste)
+		responses.JSON(w, http.StatusOK, converted)
+	}
+			
+	//responses.JSON(w, http.StatusOK, symbols)
 }
 
 // Cadastra uma moeda específica (sigla e país)

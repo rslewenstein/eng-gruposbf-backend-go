@@ -1,6 +1,7 @@
 package services
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -9,6 +10,15 @@ import (
 	"go.mod/src/config"
 	"go.mod/src/models"
 )
+
+type Response struct {
+	ResultRes float32  `json:"result"`
+	QueryRes  QueryRes `json:"query"`
+}
+
+type QueryRes struct {
+	SymbolRes string `json:"to"`
+}
 
 func GetConverterCurrency(c models.Converter) ([]models.Converted, error) {
 	var currencyFrom string = c.CurrencyFrom //"BRL"
@@ -38,7 +48,16 @@ func GetConverterCurrency(c models.Converter) ([]models.Converted, error) {
 		log.Fatal(err)
 	}
 
-	fmt.Println(string(body))
+	var responseObject Response
+	json.Unmarshal(body, &responseObject)
+	fmt.Println(responseObject.QueryRes.SymbolRes)
+	fmt.Println(responseObject.ResultRes)
+
+	//Convert the body to type string
+	// sb := string(body)
+	// fmt.Println(sb)
+
+	//fmt.Println(string(body))
 
 	return nil, nil
 }
