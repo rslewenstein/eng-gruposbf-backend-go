@@ -1,5 +1,6 @@
 # eng-gruposbf-backend-go
 Teste para Engenheiro de Software do Grupo SBF.
+- Candidato: Rafael Soares Lewenstein
 #### 1 - Dependências:
 - versão do Go: 1.19
 - Utilizei o MySql
