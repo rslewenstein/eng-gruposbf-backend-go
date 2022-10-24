@@ -1,0 +1,39 @@
+version: "3.3"
+
+volumes:
+    GruposbfDb:
+
+networks:
+    mysqlGO:
+    currencyConverterGo:
+
+services:
+
+    mysql:
+        image: "mysql:5.7"
+        container_name: mysql
+        ports:
+            - "3306:3306"
+        volumes:
+            - GruposbfDb:/var/lib/mysql
+        networks:
+            - mysqlGO
+        environment:
+            - MYSQL_ROOT_PASSWORD=rafael123
+            - MYSQL_ROOT_HOST=%
+            - bind-address:0.0.0.0
+
+    currencyconverter:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: currency-container
+        networks:
+            - mysqlGO
+            - currencyConverterGo
+        ports:
+            - 5000:5000
+        environment:
+            - DBHOST=mysql
+        depends_on:
+            - mysql

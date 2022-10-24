@@ -8,7 +8,7 @@ import (
 
 var productRouters = []Router{
 	{
-		URI:      "/api/convert/{symbol}&{amount}", // "/api/convert/{productId}&{symbol}&{amount}",
+		URI:      "/api/convert/{symbol}&{amount}",
 		Method:   http.MethodGet,
 		Function: controllers.GetConvertedCurrency,
 	},
